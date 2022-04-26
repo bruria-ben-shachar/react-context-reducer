@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import {CountProvider, useCount} from './CountContext'
 
+function CountDisplay() {
+    // here we only need access to the state vatiable
+  const {state} = useCount()
+  return <div>{`The current count is ${state.count}`}</div>
+}
+
+function Counter() {
+    // we we need access to the dispatch (set) function of the state reducer
+    // to increment the counter upon clicking the button
+  const {dispatch} = useCount()
+  return (
+      <button onClick={() => dispatch({type: 'increment'})}>
+        Increment count
+      </button>
+  )
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <CountProvider>
+        <CountDisplay />
+        <Counter />
+      </CountProvider>
   );
 }
 

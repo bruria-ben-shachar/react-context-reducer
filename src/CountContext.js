@@ -4,7 +4,7 @@ import * as React from 'react'
 const CountContext = React.createContext()
 
 /**
- * A component that implements the count reducer dispatch function
+ * A reducer that handles the count state
  * @param state
  * @param action
  * @returns {{count: *}|{count: number}}
@@ -39,9 +39,9 @@ function CountProvider({children}) {
 }
 
 /**
- * A function that returns the count context
- * the consumer will of context must have access, in other words
- * it must be be below a CountContext.Provider.
+ * A function (custom hook) that returns the count context
+ * the consumer of context must have access, in other words
+ * it must be below a CountContext.Provider.
  * The function CountProvider.Consumer is a shorthand for it
  * @returns {unknown}
  */
